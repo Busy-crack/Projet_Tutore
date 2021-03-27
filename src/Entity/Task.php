@@ -32,6 +32,12 @@ class Task
      */
     private $Date;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Liste::class, inversedBy="tache")
+     */
+    private $liste;
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +75,18 @@ class Task
     public function setDate(\DateTimeInterface $Date): self
     {
         $this->Date = $Date;
+
+        return $this;
+    }
+
+    public function getListe(): ?Liste
+    {
+        return $this->liste;
+    }
+
+    public function setListe(?Liste $liste): self
+    {
+        $this->liste = $liste;
 
         return $this;
     }
