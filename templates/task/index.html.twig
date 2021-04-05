@@ -7,13 +7,13 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>EstValide</th>
-                <th>Date</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Titre</th>
+            <th>EstValide</th>
+            <th>Date</th>
+            <th>actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for task in tasks %}
@@ -35,5 +35,42 @@
         </tbody>
     </table>
 
-    <a href="{{ path('task_new') }}">Create new</a>
+    {#    <a href="{{ path('task_new') }}">Create new</a>#}
+    {#    <button class="btn">{{ button_label|default('Save') }}</button>#}
+
+    <hr />
+
+    <h1>Create new Task</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+
+
+
+    <hr />
+
+    {% for list in lists %}
+        <tr>
+            <td>{{ list.id }}</td>
+            <td>{{ list.Titre }}</td>
+            <td>
+
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="5">no records found</td>
+        </tr>
+    {% endfor %}
+
+    <hr />
+
+    {{ form_start(form2) }}
+    {{ form_widget(form2) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form2) }}
+
+
 {% endblock %}

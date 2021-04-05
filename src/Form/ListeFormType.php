@@ -22,4 +22,9 @@ class ListeFormType extends AbstractType
             'data_class' => Liste::class,
         ]);
     }
+
+    public function getBlockPrefix()
+    {
+        return 'newListe';
+    }
 }

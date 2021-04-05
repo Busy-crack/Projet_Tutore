@@ -24,4 +24,10 @@ class TaskType extends AbstractType
             'data_class' => Task::class,
         ]);
     }
+
+    public function getBlockPrefix()
+    {
+        return 'newTask';
+    }
+
 }
