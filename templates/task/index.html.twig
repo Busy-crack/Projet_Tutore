@@ -5,102 +5,84 @@
 {% block title %}Task index{% endblock %}
 
 {% block body %}
-<div style="text-align:left;"></div>
+    <div style="text-align:left;"></div>
 
-{% block header %} 
-<div class="h-container">
-      <br class="sidenav">
-        <img src="../assets/images/home.svg" /> 
-        <h6 class=""> user@example.com </h6> 
-        <br></br>
-      <h3 class="">Mes listes </h3>
-      {% for list in lists %}
-        
-       
-        <ul class="list js-list">
-            <li>{{ list.id }}
-            {{ list.Titre }}</li>
-        </ul>
-    {% else %}
-        <tr>
-            <td colspan="5">no records found</td>
-        </tr>
-    {% endfor %}
-     
+    {% block header %}
+        <div class="h-container">
+            <br class="sidenav">
+            <img src="../assets/images/home.svg"/>
+            <h6 class=""> user@example.com </h6>
+            <br></br>
+            <h3 class="">Mes listes </h3>
+            {% for list in lists %}
 
-    <hr />
-  
-    <div class="inputField">   
-    {{ form_start(form2) }}
-    {{ form_widget(form2) }}
-    <button class="btn js-form-submit"><i class="fa fa-plus" aria-hidden="true"></i></button>
-    {{ form_end(form2) }}    
-      </div>
-         <input type="text" placeholder="Nouvelle liste" class="input js-form-input" />
-    
-        
-        <footer>
-        <a href=""> Parametres</a>
-      </footer>
-    </div>
-      </div>
-{% endblock %}
+                <ul class="list js-list">
+                    <li>{{ list.Titre }}</li>
+                </ul>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+
+
+            <hr/>
+
+            <div class="inputField">
+                {{ form_start(form2) }}
+                {{ form_widget(form2) }}
+                <button class="btn js-form-submit"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                {{ form_end(form2) }}
+            </div>
+            <input type="text" placeholder="Nouvelle liste" class="input js-form-input"/>
+            <footer>
+                <a href=""> Parametres</a>
+            </footer>
+        </div>
+        </div>
+    {% endblock %}
     <br>
-    <h2>Mes Prochaines Tâches</h2>
-    
-    <table class="table">
-        
-      
-        
-        </br>
+    <div class="test">
+        <h2>Mes Prochaines Tâches</h2>
 
-        {% for task in tasks %}
-            <ul>
-                <button class="btn " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                    {{ task.id }}
-                    {{ task.Titre }}
-                   {{ task.EstValide ? 'Yes' : 'No' }}
-                    {{ task.Date ? task.Date|date('Y-m-d') : '' }}
-                    
-                    <a href="{{ path('task_show', {'id': task.id}) }}">show</a>
-                    <a href="{{ path('task_edit', {'id': task.id}) }}">edit</a>
-                   
-                </button>
-            </ul>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        
-    </table>
+        <table class="table">
 
-    {#    <a href="{{ path('task_new') }}">Create new</a>#}
-    {#    <button class="btn">{{ button_label|default('Save') }}</button>#}
+            </br>
 
-    <hr />
+            {% for task in tasks %}
+                <ul>
+                    <button class="btn " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                            aria-controls="offcanvasRight">
+                        {{ task.Titre }}
+                        {{ task.Date ? task.Date|date('d-m-Y') : '' }}
+                    </button>
+                </ul>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+    {# <a href="{{ path('task_new') }}">Create new</a> #}
+    {# <button class="btn">{{ button_label|default('Save') }}</button> #}
+
+    <hr/>
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-   <div class="offcanvas-header">
-     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-   </div>
-   <div class="offcanvas-body">
-    <div class="">
-    {# modification de la tache#}
-     {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
-  </div>
- </div>
-
-
-
-
-
-    <hr />
-
-   
-
+    <div class="offcanvas-header">
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div class="">
+            {# modification de la tache #}
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn">{{ button_label|default('Save') }}</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+    <hr/>
 
 {% endblock %}

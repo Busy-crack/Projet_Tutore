@@ -114,3 +114,8 @@ main .container{
 .btn-task button:hover{
   background-color: #FF7675;
 }
+
+.test{
+	display: flex;
+	flex-direction: column;
+}
