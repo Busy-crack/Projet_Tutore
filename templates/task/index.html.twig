@@ -5,12 +5,12 @@
 {% block title %}Task index{% endblock %}
 
 {% block body %}
-    <div style="text-align:left;"></div>
-
+    <div class="grid-container">
+    <div class="item1">
     {% block header %}
-        <div class="h-container">
-            <br class="sidenav">
-            <img src="../assets/images/home.svg"/>
+    <div class="wrapper d-flex">
+    <div class="sidebar"> <small class="text-muted pl-3">WIDR PAY</small>
+        <img src="../assets/images/home.svg"/>
             <h6 class=""> {{email}}</h6>
             <br></br>
             <h3 class="">Mes listes </h3>
@@ -38,16 +38,18 @@
             <footer>
                 <a href=""> Parametres</a>
             </footer>
-        </div>
-        </div>
+    </div>
+    </div>
+</div>
+        
     {% endblock %}
-    <br>
+
+    <div class="item2">
     <div class="test">
         <h2>Mes Prochaines Tâches</h2>
 
         <table class="table">
 
-            </br>
 
             {% for task in tasks %}
                 <ul>
@@ -84,6 +86,6 @@
             </div>
         </div>
     </div>
-    <hr/>
-
+    </div>
+</div>
 {% endblock %}

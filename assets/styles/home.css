@@ -1,38 +1,56 @@
 * {
-	box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: 30% 60%;
+    grid-gap: 0px;
+}
+.item1{
+grid-column-start: 1;
+grid-column-end: 2;
 }
 
 body {
-	font-family: 'Roboto', sans-serif;
-	display: flex;
-	min-height: 100px;
-    font-size: 10px;
-	margin: 0;
+    color:#222222;
 }
 
-.h-container {
-	background-color: #F5F5F5 !important;
-	width: 400px;
-	max-width: 100%;
-  height: 1000px;
+.wrapper {
+    position: relative
 }
 
-ul li{
- cursor: pointer;
-  position: relative;
-  padding: 12px 8px 12px 40px;
-  background: #eee;
-  font-size: 18px;
-  transition: 0.2s;
+.sidebar {
+    width: 300px;
+    height: max-content;
+    background: #F5F5F5;
+    padding: 20px 0
 }
 
-main .container{
-	background-color: #FDFDFD;
-  position: 450px;
-	width: 400px;
-	max-width: 100%;
+ul li a img {
+    background: #66BB6A;
+    top: 0;
+    border: none;
+    width: 20px
 }
 
+.sidebar ul li {
+    text-decoration: none;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    display: block
+}
+
+.sidebar ul li:hover {
+    background: #E06867
+    
+}
+
+.sidebar ul li a:hover {
+    text-decoration: none
+}
 
 .inputField button{
 	width: 50px;
@@ -52,43 +70,6 @@ main .container{
 	background: #f1f1f1;
 }
 
-/* The sidebar menu */
-.sidenav {
-  height: 100%; /* Full-height: remove this if you want "auto" height */
-  width: 400px; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
- /* Black */
- 
-  padding-top: 20px;
-}
-
-/* The navigation menu links */
-.sidenav a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-}
-
-/* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
-
-
-/* Position and style the close button (top right corner) */
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
@@ -113,9 +94,4 @@ main .container{
 
 .btn-task button:hover{
   background-color: #FF7675;
-}
-
-.test{
-	display: flex;
-	flex-direction: column;
 }
