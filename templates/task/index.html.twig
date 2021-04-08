@@ -11,7 +11,7 @@
         <div class="h-container">
             <br class="sidenav">
             <img src="../assets/images/home.svg"/>
-            <h6 class=""> user@example.com </h6>
+            <h6 class=""> {{email}}</h6>
             <br></br>
             <h3 class="">Mes listes </h3>
             {% for list in lists %}
@@ -71,16 +71,17 @@
     <hr/>
 
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-    <div class="offcanvas-header">
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-        <div class="">
+        <div class="offcanvas-header">
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="">
             {# modification de la tache #}
             {{ form_start(form) }}
             {{ form_widget(form) }}
             <button class="btn">{{ button_label|default('Save') }}</button>
             {{ form_end(form) }}
+            </div>
         </div>
     </div>
     <hr/>

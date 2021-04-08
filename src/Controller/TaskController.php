@@ -30,6 +30,7 @@ class TaskController extends AbstractController
         $form = $this->createForm(TaskType::class, $task);
         $formList = $this->createForm(ListeFormType::class, $list);
         $entityManager = $this->getDoctrine()->getManager();
+        $email = $this->getUser()->getEmail();
 
         if($request->request->has("newTask")){
             $form->handleRequest($request);
@@ -47,7 +48,8 @@ class TaskController extends AbstractController
             'lists' => $listeRepository -> findAll(),
             'task' => $task,
             'form' => $form->createView(),
-            'form2' => $formList->createView()
+            'form2' => $formList->createView(),
+            'email' => $email
         ]);
     }
 
