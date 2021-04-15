@@ -55,15 +55,13 @@
                
             {% for task in tasks %}
                 <ul >
-                    <a href="{{ path('task_edit',{'id':task.Id}) }}">
-                    <button class="btn editData" data-is-edit="{{ task.Titre|e('html_attr') }}" type="button"  data-bs-toggle="offcanvas" >
+                    <a class="list-task" href="{{ path('task_edit',{'id':task.Id}) }}">
+                    
                         
                         {{ task.Titre }}
                         {{ task.Date ? task.Date|date('d-m-Y') : '' }}
                         
- 
-                        
-                    </button>
+           
                 </a>
                 </ul>
             {% else %}
@@ -109,6 +107,6 @@
 
 
 {% block content %}{% endblock %}
-  
+
 </div>
 {% endblock %}

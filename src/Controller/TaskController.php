@@ -105,7 +105,7 @@ class TaskController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="task_edit", methods={"GET","POST"})
-     * @Entity("task", expr="repository.find(id)")
+     *
      */
     public function edit(TaskRepository $taskRepository, ListeRepository $listeRepository,Request $request, Task $task,TaskType $formadd,Liste $list): Response
     {
@@ -157,7 +157,7 @@ class TaskController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="task_delete", methods={"POST"})
+     * @Route("/{id}/edit/delete", name="task_delete", methods={"POST"})
      */
     public function delete(Request $request, Task $task): Response
     {
