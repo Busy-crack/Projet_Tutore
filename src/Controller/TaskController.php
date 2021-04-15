@@ -13,6 +13,7 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 
 /**
  * @Route("/task")
@@ -32,9 +33,15 @@ class TaskController extends AbstractController
         $formList = $this->createForm(ListeFormType::class, $list);
         $entityManager = $this->getDoctrine()->getManager();
         $email = $this->getUser()->getEmail();
+        $formadd = $this->createForm(TaskType::class, $task);
+       
+
+        
+
 
         if($request->request->has("newTask")){
             $form->handleRequest($request);
+            $formadd->handleRequest($request);
             $entityManager->persist($task);
             $entityManager->flush();
         };
@@ -62,7 +69,7 @@ class TaskController extends AbstractController
         $task = new Task();
         $form = $this->createForm(TaskType::class, $task);
         $form->handleRequest($request);
-
+       
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($task);
@@ -99,22 +106,55 @@ class TaskController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="task_edit", methods={"GET","POST"})
+     * @Entity("task", expr="repository.find(id)")
      */
-    public function edit(Request $request, Task $task): Response
+    public function edit(TaskRepository $taskRepository, ListeRepository $listeRepository,Request $request, Task $task,TaskType $formadd,Liste $list): Response
     {
+        $formadd = $this->createForm(TaskType::class, $task);
+        $formadd->handleRequest($request);
+        $email = $this->getUser()->getEmail();
         $form = $this->createForm(TaskType::class, $task);
-        $form->handleRequest($request);
+        $formList = $this->createForm(ListeFormType::class, $list);
+        $entityManager = $this->getDoctrine()->getManager();
+        $email = $this->getUser()->getEmail();
+        $formadd = $this->createForm(TaskType::class, $task);
+       
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+        
+
+
+        if($request->request->has("newTask")){
+            $form->handleRequest($request);
+            $formadd->handleRequest($request);
+            $entityManager->persist($task);
+            $entityManager->flush();
+        };
+        if($request->request->has("newListe")){
+            $formList->handleRequest($request);
+            $entityManager->persist($list);
+            $entityManager->flush();
+        };
+
+        if ($formadd->isSubmitted() && $formadd->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($task);
+            $entityManager->flush();
 
             return $this->redirectToRoute('task_index');
         }
 
         return $this->render('task/edit.html.twig', [
+            
+            'formadd' => $formadd->createView(),
+            'tasks' => $taskRepository->findAll(),
+            'lists' => $listeRepository -> findAll(),
             'task' => $task,
             'form' => $form->createView(),
+            'form2' => $formList->createView(),
+            'email' => $email
         ]);
+
+       
     }
 
     /**

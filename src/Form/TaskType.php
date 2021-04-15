@@ -15,6 +15,7 @@ class TaskType extends AbstractType
             ->add('Titre')
             ->add('EstValide')
             ->add('Date')
+            ->add('Notes');
         ;
     }
 

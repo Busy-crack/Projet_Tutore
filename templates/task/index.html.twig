@@ -1,6 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %} {{ encore_entry_link_tags('home') }} {% endblock %}
+{% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
 
 {% block title %}Task index{% endblock %}
 
@@ -9,11 +12,10 @@
     <div class="item1">
     {% block header %}
     <div class="wrapper d-flex">
-    <div class="sidebar"> <small class="text-muted pl-3">WIDR PAY</small>
+    <div class="sidebar">
         <img src="../assets/images/home.svg"/>
-            <h6 class=""> {{email}}</h6>
-            <br></br>
-            <h3 class="">Mes listes </h3>
+            <h6 class="email"> {{email}}</h6>
+            <h3>Mes listes</h3>
             {% for list in lists %}
 
                 <ul class="list js-list">
@@ -30,11 +32,10 @@
 
             <div class="inputField">
                 {{ form_start(form2) }}
-                {{ form_widget(form2) }}
+                {{ form_widget(form2,{'attr': {'class': 'task_field','placeholder': 'Le contenu de l\'article'}}) }}
                 <button class="btn js-form-submit"><i class="fa fa-plus" aria-hidden="true"></i></button>
                 {{ form_end(form2) }}
             </div>
-            <input type="text" placeholder="Nouvelle liste" class="input js-form-input"/>
             <footer>
                 <a href=""> Parametres</a>
             </footer>
@@ -48,44 +49,66 @@
     <div class="test">
         <h2>Mes Prochaines Tâches</h2>
 
-        <table class="table">
+        <div  >
 
-
+            
+               
             {% for task in tasks %}
-                <ul>
-                    <button class="btn " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                            aria-controls="offcanvasRight">
+                <ul >
+                    <a href="{{ path('task_edit',{'id':task.Id}) }}">
+                    <button class="btn editData" data-is-edit="{{ task.Titre|e('html_attr') }}" type="button"  data-bs-toggle="offcanvas" >
+                        
                         {{ task.Titre }}
                         {{ task.Date ? task.Date|date('d-m-Y') : '' }}
+                        
+ 
+                        
                     </button>
+                </a>
                 </ul>
             {% else %}
                 <tr>
                     <td colspan="5">no records found</td>
                 </tr>
             {% endfor %}
-
-        </table>
+           
+        </div>
     </div>
-    {# <a href="{{ path('task_new') }}">Create new</a> #}
+    
     {# <button class="btn">{{ button_label|default('Save') }}</button> #}
 
     <hr/>
+ 
+    <!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Nouvelle tache</button>
 
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-        <div class="offcanvas-header">
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="">
-            {# modification de la tache #}
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-            <button class="btn">{{ button_label|default('Save') }}</button>
-            {{ form_end(form) }}
-            </div>
-        </div>
+<!-- Modal -->
+<div id="myModal" class="modal fade" >
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        
+        {{include("task/new.html.twig")}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
     </div>
-    </div>
+
+  </div>
+</div>
+
+
+</div>
+
+
+{% block content %}{% endblock %}
+  
 </div>
 {% endblock %}
