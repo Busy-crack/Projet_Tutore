@@ -25,6 +25,7 @@ class TaskController extends AbstractController
 
     public function index(TaskRepository $taskRepository, ListeRepository $listeRepository, Request $request): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $task = new Task();
         $list = new Liste();
         $form = $this->createForm(TaskType::class, $task);
