@@ -37,6 +37,11 @@ class Task
      */
     private $liste;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Notes;
+
 
     public function getId(): ?int
     {
@@ -87,6 +92,18 @@ class Task
     public function setListe(?Liste $liste): self
     {
         $this->liste = $liste;
+
+        return $this;
+    }
+
+    public function getNotes(): ?string
+    {
+        return $this->Notes;
+    }
+
+    public function setNotes(?string $Notes): self
+    {
+        $this->Notes = $Notes;
 
         return $this;
     }

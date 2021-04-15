@@ -1,14 +1,44 @@
-{% extends 'base.html.twig' %}
+{% extends 'task/index.html.twig' %}
 
-{% block title %}Edit Task{% endblock %}
+ {% block content %}
+{% for task in tasks %}
+   
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight-{{ task.id }}" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header"  id="event">
+            <button  type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+    
+        <div class="offcanvas-body"  >
+            
+            <div  >
+                
+               {#{{include("task/edit.html.twig")}}{% include "task/edit.html.twig" %}#}
+                    <h1>Edit task</h1>
+               
+               {#<a href="{{ path('task_edit',{'id':task.Id}) }}"> Edit</a>#}
+              
+            
+            </div>
+        </div>
+    </div>
 
-{% block body %}
+   
+        
+      </div>
+    {% endfor %}
+    <div class="item3">
+    <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <h1>Edit task</h1>
+            {{ form_start(formadd)}}
+                {{form(formadd)}}
+             {{ form_end(formadd) }}
+          </li>
+        </ul>
+    </div>
+</div>
+{% endblock %} 
+    
 
-    <h1>Edit task</h1>
 
-    {{ include('task/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('task_index') }}">back to list</a>
-
-    {{ include('task/_delete_form.html.twig') }}
-{% endblock %}
