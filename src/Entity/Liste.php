@@ -25,7 +25,7 @@ class Liste
     private $titre;
 
     /**
-     * @ORM\OneToMany(targetEntity=task::class, mappedBy="liste")
+     * @ORM\OneToMany(targetEntity=Task::class, mappedBy="liste")
      */
     private $tache;
 
@@ -52,14 +52,14 @@ class Liste
     }
 
     /**
-     * @return Collection|task[]
+     * @return Collection|Task[]
      */
     public function getTache(): Collection
     {
         return $this->tache;
     }
 
-    public function addTache(task $tache): self
+    public function addTache(Task $tache): self
     {
         if (!$this->tache->contains($tache)) {
             $this->tache[] = $tache;
@@ -69,7 +69,7 @@ class Liste
         return $this;
     }
 
-    public function removeTache(task $tache): self
+    public function removeTache(Task $tache): self
     {
         if ($this->tache->removeElement($tache)) {
             // set the owning side to null (unless already changed)
