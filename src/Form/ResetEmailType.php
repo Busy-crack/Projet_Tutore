@@ -24,7 +24,7 @@ class ResetEmailType extends AbstractType
             'first_options' => ['label' => 'Nouvelle adresse e-mail'],
             'second_options' => ['label' => "Confirmez l'adresse e-mail"],
         ])
-
+            /*
         ->add('Modifiez', SubmitType::class, array(
 
             'attr' => array(
@@ -34,8 +34,10 @@ class ResetEmailType extends AbstractType
             )
 
         ))
+            */
 
         ;
+
     }
 
 

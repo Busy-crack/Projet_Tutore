@@ -19,8 +19,8 @@ class PasswordController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $changePassword = new changePassword();
-        // rattachement du formulaire avec la class changePassword
         $form = $this->createForm('App\Form\ResetPasswordType', $changePassword);
+
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
 
