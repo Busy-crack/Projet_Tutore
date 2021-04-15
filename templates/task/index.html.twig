@@ -3,74 +3,105 @@
 {% block title %}Task index{% endblock %}
 
 {% block body %}
-    <h1>Task index</h1>
+    <div class="grid-container">
+    <div class="item1">
+    {% block header %}
+    <div class="wrapper d-flex">
+    <div class="sidebar">
+        <img src="../assets/images/home.svg"/>
+            <h6 class="email"> {{email}}</h6>
+            <h3>Mes listes</h3>
+            {% for list in lists %}
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Titre</th>
-            <th>EstValide</th>
-            <th>Date</th>
-            <th>actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for task in tasks %}
-            <tr>
-                <td>{{ task.id }}</td>
-                <td>{{ task.Titre }}</td>
-                <td>{{ task.EstValide ? 'Yes' : 'No' }}</td>
-                <td>{{ task.Date ? task.Date|date('Y-m-d') : '' }}</td>
-                <td>
-                    <a href="{{ path('task_show', {'id': task.id}) }}">show</a>
-                    <a href="{{ path('task_edit', {'id': task.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    {#    <a href="{{ path('task_new') }}">Create new</a>#}
-    {#    <button class="btn">{{ button_label|default('Save') }}</button>#}
-
-    <hr />
-
-    <h1>Create new Task</h1>
-
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-    {{ form_end(form) }}
+                <ul class="list js-list">
+                    <li>{{ list.Titre }}</li>
+                </ul>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
 
 
+            <hr/>
 
-    <hr />
+            <div class="inputField">
+                {{ form_start(form2) }}
+                {{ form_widget(form2,{'attr': {'class': 'task_field','placeholder': 'Le contenu de l\'article'}}) }}
+                <button class="btn js-form-submit"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                {{ form_end(form2) }}
+            </div>
+            <footer>
+                <a href=""> Parametres</a>
+            </footer>
+    </div>
+    </div>
+</div>
+        
+    {% endblock %}
 
-    {% for list in lists %}
-        <tr>
-            <td>{{ list.id }}</td>
-            <td>{{ list.Titre }}</td>
-            <a href="{{ path('liste_edit', {'id': list.id}) }}">edit</a>
-        </tr>
-    {% else %}
-        <tr>
-            <td colspan="5">no records found</td>
-        </tr>
-    {% endfor %}
+    <div class="item2">
+    <div class="test">
+        <h2>Mes Prochaines Tâches</h2>
 
-    <hr />
+        <div  >
 
-    {{ form_start(form2) }}
-    {{ form_widget(form2) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-    {{ form_end(form2) }}
+            
+               
+            {% for task in tasks %}
+                <ul >
+                    <a class="list-task" href="{{ path('task_edit',{'id':task.Id}) }}">
+                    
+                        
+                        {{ task.Titre }}
+                        {{ task.Date ? task.Date|date('d-m-Y') : '' }}
+                        
+           
+                </a>
+                </ul>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+           
+        </div>
+    </div>
+    
+    {# <button class="btn">{{ button_label|default('Save') }}</button> #}
 
-    {#    <a href="{{ path('#') }}">parametre</a>  #}
-    <a href="{{ path('app_logout') }}">deconnexion</a>
+    <hr/>
+ 
+    <!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Nouvelle tache</button>
 
+<!-- Modal -->
+<div id="myModal" class="modal fade" >
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        
+        {{include("task/new.html.twig")}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+</div>
+
+
+{% block content %}{% endblock %}
+
+</div>
 {% endblock %}
