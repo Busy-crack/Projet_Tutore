@@ -19,7 +19,7 @@ body {
     max-width: 100%;
 }
 
-.form {
+.formemail {
     padding: 30px 40px;
 }
 
@@ -36,18 +36,18 @@ body {
 }
 
 
-.form-control {
+.formemail-control {
     margin-bottom: 10px;
     padding-bottom: 20px;
-    position: relative;
+
 }
 
-.form-control label {
+.formemail-control label {
     display: inline-block;
     margin-bottom: 5px;
 }
 
-.form-control input {
+.formemail-control input {
     border: 2px solid #f0f0f0;
     border-radius: 4px;
     display: block;
@@ -57,37 +57,37 @@ body {
     width: 100%;
 }
 
-.form-control input:focus {
+.formemail-control input:focus {
     outline: 0;
     border-color: #fff;
 }
 
-.form-control.success input {
+.formemail-control.success input {
     border-color: #2ecc71;
 }
 
-.form-control.error input {
+.formemail-control.error input {
     border-color: #e74c3c;
 }
 
-.form-control i {
+.formemail-control i {
     visibility: hidden;
     position: absolute;
     top: 40px;
     right: 10px;
 }
 
-.form-control.success i.fa-check-circle {
+.formemail-control.success i.fa-check-circle {
     color: #2ecc71;
     visibility: visible;
 }
 
-.form-control.error i.fa-exclamation-circle {
+.formemail-control.error i.fa-exclamation-circle {
     color: #e74c3c;
     visibility: visible;
 }
 
-.form-control small {
+.formemail-control small {
     color: #e74c3c;
     position: absolute;
     bottom: 0;
@@ -95,6 +95,6 @@ body {
     visibility: hidden;
 }
 
-.form-control.error small {
+.formemail-control.error small {
     visibility: visible;
 }
