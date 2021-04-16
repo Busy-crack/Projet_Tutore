@@ -26,6 +26,8 @@ class Liste
 
     /**
      * @ORM\OneToMany(targetEntity=Task::class, mappedBy="liste")
+     * toString
+     * @return string
      */
     private $tache;
 

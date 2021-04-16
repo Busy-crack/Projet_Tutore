@@ -53,6 +53,7 @@ class ListeController extends AbstractController
      */
     public function show(Liste $liste): Response
     {
+
         return $this->render('liste/show.html.twig', [
             'liste' => $liste,
         ]);
