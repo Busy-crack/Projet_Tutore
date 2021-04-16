@@ -21,8 +21,11 @@ security:
             guard:
                 authenticators:
                     - App\Security\Authenticator
+            form_login:
+                default_target_path: task_index
             logout:
                 path: app_logout
+                target: app_login
                 # where to redirect after logout
                 # target: app_any_route
 

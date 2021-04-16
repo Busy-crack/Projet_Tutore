@@ -1,4 +1,8 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %} {{ encore_entry_link_tags('home') }} {% endblock %}
+{% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+{% endblock %}
 
 {% block title %}Task index{% endblock %}
 
@@ -8,8 +12,11 @@
     {% block header %}
     <div class="wrapper d-flex">
     <div class="sidebar">
-        <img src="../assets/images/home.svg"/>
+
+
+        <a href="{{ path("task_index") }}"><i class="fas fa-home"></i> </a>
             <h6 class="email"> {{email}}</h6>
+            <div class="sidebar-1">
             <h3>Mes listes</h3>
             {% for list in lists %}
 
@@ -21,7 +28,7 @@
                     <td colspan="5">no records found</td>
                 </tr>
             {% endfor %}
-
+        </div>
 
             <hr/>
 
@@ -31,8 +38,11 @@
                 <button class="btn js-form-submit"><i class="fa fa-plus" aria-hidden="true"></i></button>
                 {{ form_end(form2) }}
             </div>
-            <footer>
-                <a href=""> Parametres</a>
+            <footer class="footer">
+                <ul>
+                <li><a href="{{ path('email-update') }}"><i class="fas fa-cog"></i> Paramètres</a></li>
+                <li><a href="{{ path('app_logout') }}"><i class="fas fa-power-off"></i> Déconnexion</a></li>
+            </ul>
             </footer>
     </div>
     </div>
@@ -41,10 +51,11 @@
     {% endblock %}
 
     <div class="item2">
+
     <div class="test">
         <h2>Mes Prochaines Tâches</h2>
 
-        <div  >
+        <div class="list-task" >
 
             
                
@@ -53,8 +64,8 @@
                     <a class="list-task" href="{{ path('task_edit',{'id':task.Id}) }}">
                     
                         
-                        {{ task.Titre }}
-                        {{ task.Date ? task.Date|date('d-m-Y') : '' }}
+                       <li> {{ task.Titre }}</li>
+                        <li><small>{{ task.Date ? task.Date|date('d-m-Y') : '' }}</small></li>
                         
            
                 </a>
@@ -73,7 +84,8 @@
     <hr/>
  
     <!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Nouvelle tache</button>
+    <i class="fa fa-plus" aria-hidden="true"></i>
+<button type="button" class="btn btn-lg" data-toggle="modal" data-target="#myModal">Nouvelle tache</button>
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" >
@@ -97,11 +109,10 @@
   </div>
 </div>
 
-
 </div>
 
-
+<div class="item3">
 {% block content %}{% endblock %}
-
+</div>
 </div>
 {% endblock %}

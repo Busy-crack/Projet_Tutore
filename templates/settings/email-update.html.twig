@@ -1,28 +1,82 @@
 {% extends 'base.html.twig' %}
+{% block stylesheets %} {{ encore_entry_link_tags('home') }} {% endblock %}
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
 
-{% block stylesheets %} {{ encore_entry_link_tags('login') }} {% endblock %}
-
-{% block title %}Email Update{% endblock %}
-
+{% block title %}Task index{% endblock %}
 
 {% block body %}
-    <div class="container">
-        {% for flashError in app.flashes('verify_email_error') %}
-            <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-        {% endfor %}
-        {{ form_start(form) }}
-        {{ form_row(form.email.first) }}
-        {{ form_row(form.email.second) }}
+    <div class="grid-container">
+        <div class="item1">
+            {% block header %}
+            <div class="wrapper d-flex">
+                <div class="sidebar">
 
-        <button type="submit" class="btn">Changez mon adresse email</button>
-        {{ form_end(form) }}
+                    <a href="{{ path("task_index") }}"><i class="fas fa-home"></i> </a>
+                    <h6 class="email"> {{email}}</h6>
+                    <div class="sidebar-1">
+                        <h3>Mes listes</h3>
+                        {% for list in lists %}
 
+                            <ul class="list js-list">
+                                <li>{{ list.Titre }}</li>
+                            </ul>
+                        {% else %}
+                            <tr>
+                                <td colspan="5">no records found</td>
+                            </tr>
+                        {% endfor %}
+                    </div>
 
-        {{ form_start(changePassword) }}
-        {{ form_row(changePassword) }}
-        <button type="submit" class="btn">Changez mon mot de passe </button>
-        {{ form_end(changePassword) }}
+                    <hr/>
+
+                    <footer class="footer">
+                        <ul>
+                            <li><a href="{{ path('email-update') }}"><i class="fas fa-cog"></i> Paramètres</a></li>
+                            <li><a href="{{ path('app_logout') }}"><i class="fas fa-power-off"></i> Déconnexion</a></li>
+                        </ul>
+                    </footer>
+                </div>
+            </div>
+        </div>
+
+        {% endblock %}
+
+        <div class="item2">
+            <h1 class="titre">Paramètres</h1>
+            <div class="test">
+                <div class="item2">
+
+                    <div class="container">
+                        {% for flashError in app.flashes('verify_email_error') %}
+                            <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+                        {% endfor %}
+                        <h4 class="email">Adresse Mail</h4>
+                        <p class="email">Adresse Mail actuelle :{{email}} </p>
+                        {{ form_start(form) }}
+                        {{ form_row(form.email.first) }}
+                        {{ form_row(form.email.second) }}
+
+                        <button type="submit" class="btn">Changez mon adresse email</button>
+                        {{ form_end(form) }}
+
+                        <h4 class="email">Mot de Passe</h4>
+                        {{ form_start(changePassword) }}
+                        {{ form_row(changePassword) }}
+                        <button type="submit" class="btn">Changez mon mot de passe </button>
+                        {{ form_end(changePassword) }}
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        {# <button class="btn">{{ button_label|default('Save') }}</button> #}
+
+        <hr/>
+
 
     </div>
-
 {% endblock %}

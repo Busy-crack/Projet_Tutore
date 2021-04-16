@@ -4,13 +4,13 @@
 
 .grid-container{
     display: grid;
+    grid-template-columns: 30% 40% 30%;
     grid-gap: 0px;
 }
 .item1{
 grid-column-start: 1;
 grid-column-end: 2;
 }
-
 
 .item2{
     grid-column-start: 2;
@@ -20,7 +20,7 @@ grid-column-end: 2;
         grid-column-start: 3;
         grid-column-end: 3;
     }
-
+        
 body {
     color:#222222;
 }
@@ -31,7 +31,7 @@ body {
 
 .sidebar {
     width: 300px;
-    height: max-content;
+    height: 100vh;
     background: #F5F5F5;
     padding: 20px 0
 }
@@ -43,22 +43,36 @@ ul li a img {
     width: 20px
 }
 
-.sidebar ul li {
+.sidebar-1 ul li {
     text-decoration: none;
 }
 
-.sidebar ul li a {
+.sidebar-1 ul li a {
     color: #fff;
     display: block
 }
 
-.sidebar ul li:hover {
+.sidebar-1 ul li:hover {
     background: #E06867
     
 }
 
-.sidebar ul li a:hover {
+.sidebar-1 ul li a:hover {
     text-decoration: none
+}
+
+.list-task li{
+    list-style-type: none;
+    color: #222222;
+}
+
+.list-task ul li:nth-child(even){
+    border-bottom: 1px solid;
+}
+
+.inputField form{
+    display:flex;
+    align-items: center;
 }
 
 .inputField button{
@@ -79,6 +93,44 @@ ul li a img {
 	background: #f1f1f1;
 }
 
+.footer{
+    position: relative;
+    margin-top: 100px;
+}
+
+.footer ul{
+    text-decoration: none;
+    list-style-type:none;
+    padding-left: 5px;
+}
+
+.footer ul li a{
+    color:black;
+}
+
+.fas fa-cog,.fas fa-power-off,fas fa-home{
+   color: #FF7675;
+}
+
+.btn {
+    background-color: #FF7675;
+    border-radius: 4px;
+    color: #fff;
+    display: block;
+    font-family: 'Roboto';
+    font-size: 16px;
+    padding: 10px;
+    margin-top: 20px;
+   
+}
+
+.email{
+    font-weight: 600;
+}
+
+.titre{
+    font-weight:700px;
+}
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
@@ -104,4 +156,3 @@ ul li a img {
 .btn-task button:hover{
   background-color: #FF7675;
 }
-

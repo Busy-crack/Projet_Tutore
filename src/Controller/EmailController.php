@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+namespace App\Controller;
+use App\Repository\ListeRepository;
+use App\Entity\Liste;
 use App\Form\ResetEmailType;
 use App\Model\ChangePassword;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,11 +19,14 @@ class EmailController extends AbstractController
     /**
      * @Route("/email-update", name="email-update")
      */
-    public function editEmail(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function editEmail(Request $request,ListeRepository $listeRepository, UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
+        $email = $this->getUser()->getEmail();
+        $list = new Liste();
+
         $changePassword = new ChangePassword();
         $formChangePassword = $this->createForm('App\Form\ResetPasswordType', $changePassword);
         $form = $this->createForm('App\Form\ResetEmailType');
@@ -74,6 +80,8 @@ class EmailController extends AbstractController
             'form' => $form->createView(),
             'changePassword' => $formChangePassword->createView(),
             'user' => $user,
+            'email' => $email,
+            'lists' => $listeRepository -> findAll(),
         ));
     }
 

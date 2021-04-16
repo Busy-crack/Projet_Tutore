@@ -13,10 +13,6 @@ class HomeController extends AbstractController
      */
     public function index(): Response
     {
-        $Var1 = 'variable1';
-        return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
-            'ma_variable' => $Var1,
-        ]);
+        return $this->redirectToRoute('task_index');
     }
 }
